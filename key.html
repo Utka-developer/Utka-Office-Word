@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utka Word — Ключ активации</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #38bdf8;
+            --primary-glow: rgba(56, 189, 248, 0.5);
+            --matrix-green: #10b981;
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.6);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            perspective: 1500px;
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 10s infinite ease-in-out alternate;
+            z-index: -1;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: #0284c7;
+            top: -100px;
+            left: -100px;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: #4f46e5;
+            bottom: -50px;
+            right: -50px;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(30px, 50px) scale(1.1);
+            }
+        }
+
+        .container {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            width: 100%;
+            max-width: 550px;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+        }
+
+        .header-content {
+            transform: translateZ(30px);
+        }
+
+        .laptop-wrapper {
+            transform: translateZ(50px);
+            margin-bottom: 25px;
+        }
+
+        .key-section {
+            transform: translateZ(40px);
+        }
+
+        .timer-section {
+            transform: translateZ(20px);
+        }
+
+        .welcome-icon {
+            font-size: 42px;
+            margin-bottom: 5px;
+            display: inline-block;
+            animation: duckWaddle 2s infinite;
+        }
+
+        @keyframes duckWaddle {
+            0%, 100% {
+                transform: rotate(-5deg);
+            }
+
+            50% {
+                transform: rotate(5deg);
+            }
+        }
+
+        h1 {
+            font-weight: 800;
+            font-size: 26px;
+            margin-bottom: 5px;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .laptop {
+            width: 320px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .laptop-screen {
+            background: #0f172a;
+            border: 8px solid #334155;
+            border-bottom: 12px solid #1e293b;
+            border-radius: 12px 12px 0 0;
+            height: 160px;
+            padding: 12px;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.1) inset;
+            position: relative;
+            overflow-y: hidden;
+            text-align: left;
+        }
+
+        .laptop-base {
+            background: #cbd5e1;
+            height: 12px;
+            width: 360px;
+            margin-left: -20px;
+            border-radius: 2px 2px 15px 15px;
+            position: relative;
+            box-shadow: inset 0 -4px 0 #94a3b8;
+        }
+
+        .terminal {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--matrix-green);
+            font-size: 11px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 6px;
+            height: 12px;
+            background: var(--matrix-green);
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .key-wrapper {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+            .key-wrapper:hover {
+                border-color: var(--primary);
+                box-shadow: 0 0 20px var(--primary-glow);
+                transform: scale(1.02) translateZ(20px);
+            }
+
+        #key {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+
+        .progress-ring-wrapper {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            margin: 0 auto;
+        }
+
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring__circle {
+            stroke: var(--primary);
+            stroke-dasharray: 188.4;
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 1s linear;
+            stroke-linecap: round;
+        }
+
+        #timer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #10b981;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            opacity: 0;
+            transition: all 0.4s;
+        }
+
+            .toast.show {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+    </style>
+</head>
+<body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <div class="container" id="card">
+        <div class="header-content">
+            <div class="welcome-icon">🦆</div>
+            <h1>Utka Word</h1>
+            <p class="subtitle">Ваш персональный центр доступа</p>
+        </div>
+
+        <div class="laptop-wrapper">
+            <div class="laptop">
+                <div class="laptop-screen">
+                    <div class="terminal">
+                        <span id="terminal-text"></span><span class="cursor"></span>
+                    </div>
+                </div>
+                <div class="laptop-base"></div>
+            </div>
+        </div>
+
+        <div class="key-section">
+            <div class="key-wrapper" onclick="copyToClipboard()">
+                <span id="key">ЗАГРУЗКА...</span>
+            </div>
+        </div>
+
+        <div class="timer-section">
+            <div class="progress-ring-wrapper">
+                <svg class="progress-ring" width="70" height="70">
+                    <circle stroke="rgba(255,255,255,0.1)" stroke-width="5" fill="transparent" r="30" cx="35" cy="35" />
+                    <circle class="progress-ring__circle" id="progress-circle" stroke-width="5" fill="transparent" r="30" cx="35" cy="35" />
+                </svg>
+                <div id="timer">–</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">Ключ скопирован! ✨</div>
+
+    <script>
+        const card = document.getElementById('card');
+        document.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const mouseX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+            const mouseY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+            card.style.transform = `rotateX(${mouseY * -10}deg) rotateY(${mouseX * 10}deg)`;
+        });
+        document.addEventListener('mouseleave', () => {
+            card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+        });
+
+        const terminalText = document.getElementById('terminal-text');
+        async function typeWriter(text, speed = 30) {
+            for (let i = 0; i < text.length; i++) {
+                terminalText.textContent += text.charAt(i);
+                await new Promise(r => setTimeout(r, speed));
+            }
+        }
+
+        async function bootSequence() {
+            terminalText.textContent = '';
+            await typeWriter("> Initializing secure link...\n", 20);
+            await typeWriter("> Done.\n", 10);
+            await typeWriter("> Добро пожаловать в семью Utka Word! Мы уверены, что наш инструмент станет вашим любимым помощником.\n", 35);
+            await typeWriter("> Status: ONLINE", 15);
+        }
+
+        async function refreshSequence() {
+            terminalText.textContent = '';
+            await typeWriter("> Token refresh requested...\n", 15);
+            await typeWriter("> Regenerating keys...\n", 15);
+            await typeWriter("> New access granted. Enjoy Utka Word!\n", 20);
+        }
+
+        function scrambleText(element, finalString) {
+            const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let iterations = 0;
+            const interval = setInterval(() => {
+                element.textContent = finalString.split('').map((char, index) => {
+                    if (char === '-') return '-';
+                    if (index < iterations) return finalString[index];
+                    return chars[Math.floor(Math.random() * chars.length)];
+                }).join('');
+                if (iterations >= finalString.length) clearInterval(interval);
+                iterations += 1 / 3;
+            }, 30);
+        }
+
+        const keys = ["582937416-kxqmnrtp", "739214085-azbycxdw", "184563290-pqowiryt", "920385746-mvnbczxl", "456123789-qwertyui", "832105694-asdfghjk", "671948203-zxcvbnml", "315792840-poilkjmn", "548132679-nbvcxwqs", "923874105-ghjkltyu", "174859630-qazxswed", "682305497-plmoknij", "395761824-uhbygvtf", "510298376-rdxfcgvh", "847625013-ijnhbgyv", "263107489-tfcxdrzw", "719482536-qpwoeiru", "480165927-alskdjfh", "932574108-zmxncbvl", "658901243-woeiruty", "105938274-qpwoeitn", "376512894-xmcnvblz", "249835760-alskdjfh", "824103957-qpwoeiru", "503671298-alskdjfh", "931084756-zmxncbvl", "687459123-woeiruty", "415926837-qpwoeitn", "289145673-xmcnvblz", "760394815-alskdjfh", "142758396-qpwoeiru", "894207531-zmxncbvl", "371654982-woeiruty", "528973140-qpwoeitn", "619482573-xmcnvblz", "958203716-alskdjfh", "430578291-qpwoeiru", "765134908-zmxncbvl", "283946571-woeiruty", "602759413-qpwoeitn", "814395627-xmcnvblz", "193674850-alskdjfh", "549812763-qpwoeiru", "917325084-zmxncbvl", "358469172-woeiruty", "472915836-qpwoeitn", "601847329-xmcnvblz", "839264510-alskdjfh", "214758396-qpwoeiru", "567913482-zmxncbvl", "983102675-woeiruty", "745028193-qpwoeitn", "128539674-xmcnvblz", "496183257-alskdjfh", "832759401-qpwoeiru", "375612489-zmxncbvl", "648795132-woeiruty", "509321876-qpwoeitn", "964872351-xmcnvblz", "281946703-alskdjfh", "712538940-qpwoeiru", "459367182-zmxncbvl", "807124635-woeiruty", "326985471-qpwoeitn", "593714826-xmcnvblz", "148263957-alskdjfh", "680539214-qpwoeiru", "932851476-zmxncbvl", "495782613-woeiruty", "219463875-qpwoeitn", "857326149-xmcnvblz", "374159682-alskdjfh", "901648523-qpwoeiru", "625487319-zmxncbvl", "248936571-woeiruty", "783195624-qpwoeitn", "432871596-xmcnvblz", "516294837-alskdjfh", "879365142-qpwoeiru", "342158769-zmxncbvl", "765483921-woeiruty", "108947326-qpwoeitn", "654219378-xmcnvblz", "927365481-alskdjfh", "483516297-qpwoeiru", "719238645-zmxncbvl", "856723419-woeiruty", "291345678-qpwoeitn", "564982137-xmcnvblz", "630471852-alskdjfh", "142873596-qpwoeiru", "789456123-zmxncbvl", "315289674-woeiruty", "968174352-qpwoeitn", "427651983-xmcnvblz", "854962317-alskdjfh", "196832745-qpwoeiru", "573148629-zmxncbvl", "239516784-woeiruty", "682473951-qpwoeitn", "741359268-xmcnvblz", "905827136-alskdjfh", "348129657-qpwoeiru", "472586319-zmxncbvl"];
+
+        function dotnetRandom(seed) {
+            const MBIG = 2147483647, MSEED = 161803398, SeedArray = new Int32Array(56);
+            let subtraction = (seed === -2147483648) ? MSEED : Math.abs(seed);
+            let mj = (MSEED - subtraction) | 0; SeedArray[55] = mj; let mk = 1;
+            for (let i = 1; i < 55; i++) {
+                const ii = (21 * i) % 55; SeedArray[ii] = mk;
+                mk = (mj - mk) | 0; if (mk < 0) mk = (mk + MBIG) | 0; mj = SeedArray[ii];
+            }
+            for (let k = 1; k < 5; k++) {
+                for (let i = 1; i < 56; i++) {
+                    const n = i + 30 >= 55 ? i - 25 : i + 30;
+                    SeedArray[i] = (SeedArray[i] - SeedArray[1 + n]) | 0;
+                    if (SeedArray[i] < 0) SeedArray[i] = (SeedArray[i] + MBIG) | 0;
+                }
+            }
+            let inext = 0, inextp = 21;
+            return {
+                next: function (minVal, maxVal) {
+                    if (++inext >= 56) inext = 1; if (++inextp >= 56) inextp = 1;
+                    let retVal = (SeedArray[inext] - SeedArray[inextp]) | 0;
+                    if (retVal === MBIG) retVal--; if (retVal < 0) retVal = (retVal + MBIG) | 0;
+                    SeedArray[inext] = retVal; return Math.floor((retVal / MBIG) * (maxVal - minVal)) + minVal;
+                }
+            };
+        }
+
+        let currentActiveKey = "";
+        const circle = document.getElementById('progress-circle');
+        const circumference = 30 * 2 * Math.PI;
+
+        function update() {
+            const now = Math.floor(Date.now() / 1000);
+            const remaining = 300 - (now % 300);
+            const key = keys[dotnetRandom(Math.floor(now / 300) | 0).next(0, keys.length)];
+
+            if (currentActiveKey !== key) {
+                const el = document.getElementById('key');
+                if (currentActiveKey === "") bootSequence(); else refreshSequence();
+                currentActiveKey = key;
+                scrambleText(el, key);
+            }
+
+            document.getElementById('timer').textContent = remaining;
+            circle.style.strokeDashoffset = circumference - (remaining / 300) * circumference;
+            circle.style.stroke = remaining < 30 ? '#ef4444' : '#38bdf8';
+        }
+
+        function copyToClipboard() {
+            navigator.clipboard.writeText(currentActiveKey).then(() => {
+                const t = document.getElementById('toast');
+                t.classList.add('show');
+                setTimeout(() => t.classList.remove('show'), 3000);
+            });
+        }
+
+        update();
+        setInterval(update, 1000);
+    </script>
+</body>
+</html>
